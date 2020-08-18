@@ -5,6 +5,7 @@
 const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
+const { response } = require('express');
 
 
 // --- Global Variables ---
@@ -12,6 +13,26 @@ const cors = require('cors');
 const PORT = process.env.PORT || 3003; // default PORT 3003 if .env spec fails
 const app = express();
 app.use(cors());
+
+
+// --- Routes ---
+
+app.get('/location', (req, res) => {
+  const jsonData = require('./data/location.json');
+  const builtLocation = new Location(jsonData, req.query.city);
+
+  res.send(builtLocation);
+})
+
+
+// --- Functions ---
+
+function Location(jsonData, query) {
+  this.search_query = query;
+  this.formatted_query = jsonData[0].display_name;
+  this.latitude = jsonData[0].lat;
+  this.longitude = jsonData[0].lon;
+}
 
 
 // --- Server Start ---
