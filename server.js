@@ -5,12 +5,14 @@
 const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
+const superagent = require('superagent');
 const { response } = require('express');
 
 
 // --- Global Variables ---
 
 const PORT = process.env.PORT || 3003; // default PORT 3003 if .env spec fails
+const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
 const app = express();
 app.use(cors());
 
@@ -18,21 +20,17 @@ app.use(cors());
 // --- Routes ---
 
 app.get('/location', (req, res) => {
-  const jsonData = require('./data/location.json');
+  // const jsonData = require('./data/location.json');
+  const cityQuery = req.query.city;
+  const urlToSearch = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&q=${cityQuery}&format=json`;
 
-  if (req.query.city !== 'lynnwood') {
-    // reference for a method of returning error messages
-    // https://stackoverflow.com/questions/35864088/how-to-send-error-http-response-in-express-node-js
-    return res.status(500).send({
-      'status' : 500,
-      'responseText' : 'Sorry, something went wrong'
+  superagent.get(urlToSearch)
+    .then(resFromSuperagent => {
+      const jsonData = resFromSuperagent.body;
+      const builtLocation = new Location(jsonData, cityQuery);
+    
+      res.send(builtLocation);
     })
-  } else {
-    const builtLocation = new Location(jsonData, req.query.city);
-  
-    res.send(builtLocation);
-  }
-
 })
 
 app.get('/weather', (req, res) => {
