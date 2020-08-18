@@ -24,6 +24,16 @@ app.get('/location', (req, res) => {
   res.send(builtLocation);
 })
 
+app.get('/weather', (req, res) => {
+  const jsonData = require('./data/weather.json');
+  const weatherArr = [];
+  jsonData.data.forEach(forecast => {
+    weatherArr.push(new Weather(forecast));
+  })
+
+  res.send(weatherArr);
+})
+
 
 // --- Functions ---
 
@@ -32,6 +42,11 @@ function Location(jsonData, query) {
   this.formatted_query = jsonData[0].display_name;
   this.latitude = jsonData[0].lat;
   this.longitude = jsonData[0].lon;
+}
+
+function Weather(forecastObj) {
+  this.forecast = forecastObj.weather.description;
+  this.time = forecastObj.valid_date;
 }
 
 
