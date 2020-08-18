@@ -37,12 +37,8 @@ app.get('/location', (req, res) => {
 
 app.get('/weather', (req, res) => {
   const jsonData = require('./data/weather.json');
-  const weatherArr = [];
-  jsonData.data.forEach(forecast => {
-    weatherArr.push(new Weather(forecast));
-  })
 
-  res.send(weatherArr);
+  res.send(jsonData.data.map(forecast => new Weather(forecast)));
 })
 
 

@@ -32,3 +32,28 @@ A stand alone back end servicing a static front end. This server fields requests
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+
+
+Number and name of feature: #5 Refactor /weather route with .map()
+
+Estimate of time needed to complete: 15m
+
+Start time: 2:28pm
+
+Finish time: 2:33pm
+
+Actual time needed to complete: 5m
+
+
+
+
+Number and name of feature: ________________________________
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
