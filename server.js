@@ -19,9 +19,20 @@ app.use(cors());
 
 app.get('/location', (req, res) => {
   const jsonData = require('./data/location.json');
-  const builtLocation = new Location(jsonData, req.query.city);
 
-  res.send(builtLocation);
+  if (req.query.city !== 'lynnwood') {
+    // reference for a method of returning error messages
+    // https://stackoverflow.com/questions/35864088/how-to-send-error-http-response-in-express-node-js
+    return res.status(500).send({
+      'status' : 500,
+      'responseText' : 'Sorry, something went wrong'
+    })
+  } else {
+    const builtLocation = new Location(jsonData, req.query.city);
+  
+    res.send(builtLocation);
+  }
+
 })
 
 app.get('/weather', (req, res) => {
