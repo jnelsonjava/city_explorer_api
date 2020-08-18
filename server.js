@@ -13,6 +13,7 @@ const { response } = require('express');
 
 const PORT = process.env.PORT || 3003; // default PORT 3003 if .env spec fails
 const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const app = express();
 app.use(cors());
 
@@ -20,7 +21,6 @@ app.use(cors());
 // --- Routes ---
 
 app.get('/location', (req, res) => {
-  // const jsonData = require('./data/location.json');
   const cityQuery = req.query.city;
   const urlToSearch = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&q=${cityQuery}&format=json`;
 
@@ -34,9 +34,15 @@ app.get('/location', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
-  const jsonData = require('./data/weather.json');
+  const lat = req.query.latitude;
+  const lon = req.query.longitude;
+  const urlToSearch = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lon}&key=${WEATHER_API_KEY}`;
 
-  res.send(jsonData.data.map(forecast => new Weather(forecast)));
+  superagent.get(urlToSearch)
+    .then(resFromSuperagent => {
+      const jsonData = resFromSuperagent.body;
+      res.send(jsonData.data.map(forecast => new Weather(forecast)));
+    })
 })
 
 

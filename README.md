@@ -30,6 +30,7 @@ A stand alone back end servicing a static front end. This server fields requests
 
 08-17-2020 3:50pm - Packages added and server running with no routes yet defined.
 08-18-2020 3:00pm - Hooked into locationIq API for location data by city search.
+08-18-2020 3:40pm - Hooked into weatherbit.io API for forecast data by geo-coordinate search.
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -56,6 +57,17 @@ Start time: 2:45pm
 Finish time: 3:00pm
 
 Actual time needed to complete: 15m
+
+
+Number and name of feature: #7 Weather route API connection
+
+Estimate of time needed to complete: 30m
+
+Start time: 3:15pm
+
+Finish time: 3:40pm
+
+Actual time needed to complete: 25m
 
 
 Number and name of feature: ________________________________
