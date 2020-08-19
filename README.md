@@ -31,6 +31,7 @@ A stand alone back end servicing a static front end. This server fields requests
 08-17-2020 3:50pm - Packages added and server running with no routes yet defined.
 08-18-2020 3:00pm - Hooked into locationIq API for location data by city search.
 08-18-2020 3:40pm - Hooked into weatherbit.io API for forecast data by geo-coordinate search.
+08-18-2020 5:15pm - Hooked into hikingproject.com API for trail data by geo-coordinate search.
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -70,12 +71,12 @@ Finish time: 3:40pm
 Actual time needed to complete: 25m
 
 
-Number and name of feature: ________________________________
+Number and name of feature: #8 Implement Trail route and API connection
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 45m
 
-Start time: _____
+Start time: 3:50pm
 
-Finish time: _____
+Finish time: 5:15pm
 
-Actual time needed to complete: _____
+Actual time needed to complete: 85m
