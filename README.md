@@ -32,6 +32,7 @@ A stand alone back end servicing a static front end. This server fields requests
 08-18-2020 3:00pm - Hooked into locationIq API for location data by city search.
 08-18-2020 3:40pm - Hooked into weatherbit.io API for forecast data by geo-coordinate search.
 08-18-2020 5:15pm - Hooked into hikingproject.com API for trail data by geo-coordinate search.
+08-19-2020 3:10pm - Created database/table to store location queries.
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -80,3 +81,57 @@ Start time: 3:50pm
 Finish time: 5:15pm
 
 Actual time needed to complete: 85m
+
+
+Number and name of feature: #9 Setup Database
+
+Estimate of time needed to complete: 30m
+
+Start time: 2:10pm
+
+Finish time: 3:10pm
+
+Actual time needed to complete: 60m
+
+
+Number and name of feature: ________________________________
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+
+Number and name of feature: ________________________________
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+
+Number and name of feature: ________________________________
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+
+
+
+
+
+
+
+
+
