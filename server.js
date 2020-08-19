@@ -6,6 +6,7 @@ const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
 const superagent = require('superagent');
+const pg = require('pg');
 const { response } = require('express');
 
 
@@ -15,8 +16,15 @@ const PORT = process.env.PORT || 3003; // default PORT 3003 if .env spec fails
 const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const TRAIL_API_KEY = process.env.TRAIL_API_KEY;
+const DATABASE_URL = process.env.DATABASE_URL;
 const app = express();
+
+
+// --- Express Configs ---
+
 app.use(cors());
+const client = new pg.Client(DATABASE_URL);
+client.on('error', (error) => console.error(error));
 
 
 // --- Routes ---
@@ -101,7 +109,10 @@ function Trail(trailObj) {
 
 // --- Server Start ---
 
-app.listen(PORT, () => console.log(`server running on PORT : ${PORT}`));
+client.connect()
+  .then(() => {
+    app.listen(PORT, () => console.log(`server running on PORT : ${PORT}`));
+  });
 
 
 
