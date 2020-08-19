@@ -32,6 +32,10 @@ app.get('/location', (req, res) => {
     
       res.send(builtLocation);
     })
+    .catch(error => {
+      console.log(error);
+      res.status(500).send(error.message);
+    });
 })
 
 app.get('/weather', (req, res) => {
@@ -44,6 +48,10 @@ app.get('/weather', (req, res) => {
       const jsonData = resFromSuperagent.body;
       res.send(jsonData.data.map(forecast => new Weather(forecast)));
     })
+    .catch(error => {
+      console.log(error);
+      res.status(500).send(error.message);
+    });
 })
 
 app.get('/trails', (req, res) => {
@@ -53,11 +61,13 @@ app.get('/trails', (req, res) => {
 
   superagent.get(urlToSearch)
     .then(resFromSuperagent => {
-      // throw new Error('stuff is broke y\'all');
       const jsonTrailDataArray = resFromSuperagent.body.trails;
       res.send(jsonTrailDataArray.map(trailData => new Trail(trailData)));
     })
-    // .catch(errorHandler)
+    .catch(error => {
+      console.log(error);
+      res.status(500).send(error.message);
+    });
 })
 
 
@@ -87,10 +97,6 @@ function Trail(trailObj) {
   this.condition_date = trailObj.conditionDate.split(' ')[0];
   this.condition_time = trailObj.conditionDate.split(' ')[1];
 }
-
-// function errorHandler(error) {
-//   response.status(500).send(error.message);
-// }
 
 
 // --- Server Start ---
