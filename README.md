@@ -33,6 +33,7 @@ A stand alone back end servicing a static front end. This server fields requests
 08-18-2020 3:40pm - Hooked into weatherbit.io API for forecast data by geo-coordinate search.
 08-18-2020 5:15pm - Hooked into hikingproject.com API for trail data by geo-coordinate search.
 08-19-2020 3:10pm - Created database/table to store location queries.
+08-19-2020 5:45pm - Added functionality to store previous location queries and retrieve.
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -94,15 +95,15 @@ Finish time: 3:10pm
 Actual time needed to complete: 60m
 
 
-Number and name of feature: ________________________________
+Number and name of feature: #10 Server Code Workflow
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1hr
 
-Start time: _____
+Start time: 3:10pm
 
-Finish time: _____
+Finish time: 5:45pm
 
-Actual time needed to complete: _____
+Actual time needed to complete: 2hr 35m
 
 
 Number and name of feature: ________________________________
