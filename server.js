@@ -31,14 +31,41 @@ client.on('error', (error) => console.error(error));
 
 app.get('/location', (req, res) => {
   const cityQuery = req.query.city;
-  const urlToSearch = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&q=${cityQuery}&format=json`;
 
-  superagent.get(urlToSearch)
-    .then(resFromSuperagent => {
-      const jsonData = resFromSuperagent.body;
-      const builtLocation = new Location(jsonData, cityQuery);
-    
-      res.send(builtLocation);
+  client.query(`SELECT search_query FROM locations`)
+    .then(resultFromSql => {
+      const previousValues = resultFromSql.rows.map(queryObj => queryObj.search_query);
+      if (previousValues.includes(cityQuery)) {
+        // console.log(`SELECT * FROM locations WHERE search_query = '${cityQuery}'`)
+        client.query(`SELECT * FROM locations WHERE search_query = '${cityQuery}'`)
+          .then(cityData => {
+            // console.log(cityData.rows[0]);
+            res.send(cityData.rows[0]);
+          })
+      } else {
+        
+        const urlToSearch = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&q=${cityQuery}&format=json`;
+
+        superagent.get(urlToSearch)
+          .then(resFromSuperagent => {
+            const jsonData = resFromSuperagent.body;
+      
+            // insert jsonData and cityQuery into locations table
+            const insertQuery = `INSERT INTO locations (search_query, formatted_query, latitude, longitude) VALUES ($1, $2, $3, $4)`;
+            const valueArray = [cityQuery, jsonData[0].display_name, jsonData[0].lat, jsonData[0].lon];
+      
+      
+      
+            client.query(insertQuery, valueArray)
+              .then(() => {
+                client.query(`SELECT * FROM locations WHERE search_query = '${cityQuery}'`)
+                  .then(cityData => {
+                  // console.log(cityData.rows[0]);
+                    res.send(cityData.rows[0]);
+                })
+              })
+          })
+      }
     })
     .catch(error => {
       console.log(error);
