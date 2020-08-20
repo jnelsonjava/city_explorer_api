@@ -38,7 +38,8 @@ A stand alone back end servicing a static front end. This server fields requests
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
-Many thanks to Tif Taylor for helping set up APIs and the database. You can find Tif at https://www.linkedin.com/in/tiftaylor/
+  - Many thanks to Tif Taylor for helping set up APIs and the database. You can find Tif at https://www.linkedin.com/in/tiftaylor/
+  - Matthew Peterson helped refactor logical structure, check out his projects at https://github.com/Mattpet26
 
 
 ## Progress Notes

@@ -7,7 +7,6 @@ require('dotenv').config();
 const cors = require('cors');
 const superagent = require('superagent');
 const pg = require('pg');
-const { response } = require('express');
 
 
 // --- Global Variables ---
@@ -29,41 +28,36 @@ client.on('error', (error) => console.error(error));
 
 // --- Routes ---
 
-app.get('/location', (req, res) => {
+app.get('/location', getLocation);
+app.get('/weather', getWeather);
+app.get('/trails', getTrails);
+
+
+// --- Route Handlers ---
+
+function getLocation(req, res) {
   const cityQuery = req.query.city;
 
-  client.query(`SELECT search_query FROM locations`)
+  client.query(`SELECT * FROM locations WHERE search_query = '${cityQuery}'`)
     .then(resultFromSql => {
-      const previousValues = resultFromSql.rows.map(queryObj => queryObj.search_query);
-      if (previousValues.includes(cityQuery)) {
-        // console.log(`SELECT * FROM locations WHERE search_query = '${cityQuery}'`)
-        client.query(`SELECT * FROM locations WHERE search_query = '${cityQuery}'`)
-          .then(cityData => {
-            // console.log(cityData.rows[0]);
-            res.send(cityData.rows[0]);
-          })
+      if (resultFromSql.rowCount) {
+        console.log(`found city: ${cityQuery} ... responding with DB location`);
+        res.send(resultFromSql.rows[0]);
       } else {
-        
+        console.log(`city <${cityQuery}> not found in DB`);
         const urlToSearch = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&q=${cityQuery}&format=json`;
 
         superagent.get(urlToSearch)
           .then(resFromSuperagent => {
+            
+            console.log('retrieved location from API, sending to client and caching in DB');
             const jsonData = resFromSuperagent.body;
+            res.send(new Location(jsonData, cityQuery));
       
-            // insert jsonData and cityQuery into locations table
             const insertQuery = `INSERT INTO locations (search_query, formatted_query, latitude, longitude) VALUES ($1, $2, $3, $4)`;
             const valueArray = [cityQuery, jsonData[0].display_name, jsonData[0].lat, jsonData[0].lon];
-      
-      
-      
-            client.query(insertQuery, valueArray)
-              .then(() => {
-                client.query(`SELECT * FROM locations WHERE search_query = '${cityQuery}'`)
-                  .then(cityData => {
-                  // console.log(cityData.rows[0]);
-                    res.send(cityData.rows[0]);
-                })
-              })
+
+            client.query(insertQuery, valueArray);
           })
       }
     })
@@ -71,9 +65,9 @@ app.get('/location', (req, res) => {
       console.log(error);
       res.status(500).send(error.message);
     });
-})
+}
 
-app.get('/weather', (req, res) => {
+function getWeather(req, res) {
   const lat = req.query.latitude;
   const lon = req.query.longitude;
   const urlToSearch = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lon}&key=${WEATHER_API_KEY}`;
@@ -87,9 +81,9 @@ app.get('/weather', (req, res) => {
       console.log(error);
       res.status(500).send(error.message);
     });
-})
+}
 
-app.get('/trails', (req, res) => {
+function getTrails(req, res) {
   const lat = req.query.latitude;
   const lon = req.query.longitude;
   const urlToSearch = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=10&key=${TRAIL_API_KEY}`;
@@ -103,7 +97,7 @@ app.get('/trails', (req, res) => {
       console.log(error);
       res.status(500).send(error.message);
     });
-})
+}
 
 
 // --- Functions ---
