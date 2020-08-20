@@ -38,7 +38,10 @@ A stand alone back end servicing a static front end. This server fields requests
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
+Many thanks to Tif Taylor for helping set up APIs and the database. You can find Tif at https://www.linkedin.com/in/tiftaylor/
 
+
+## Progress Notes
 
 Number and name of feature: #5 Refactor /weather route with .map()
 
@@ -106,15 +109,15 @@ Finish time: 5:45pm
 Actual time needed to complete: 2hr 35m
 
 
-Number and name of feature: ________________________________
+Number and name of feature: #11 Deploy
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 30m
 
-Start time: _____
+Start time: 5:45pm
 
-Finish time: _____
+Finish time: 6:04pm
 
-Actual time needed to complete: _____
+Actual time needed to complete: 20m
 
 
 Number and name of feature: ________________________________
