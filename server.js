@@ -135,23 +135,6 @@ function getYelp(req, res) {
       console.log(error);
       res.status(500).send(error.message);
     });
-
-  // res.send([
-  //   {
-  //     "name": "Pike Place Chowder",
-  //     "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/ijju-wYoRAxWjHPTCxyQGQ/o.jpg",
-  //     "price": "$$   ",
-  //     "rating": "4.5",
-  //     "url": "https://www.yelp.com/biz/pike-place-chowder-seattle?adjust_creative=uK0rfzqjBmWNj6-d3ujNVA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=uK0rfzqjBmWNj6-d3ujNVA"
-  //   },
-  //   {
-  //     "name": "Umi Sake House",
-  //     "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/c-XwgpadB530bjPUAL7oFw/o.jpg",
-  //     "price": "$$   ",
-  //     "rating": "4.0",
-  //     "url": "https://www.yelp.com/biz/umi-sake-house-seattle?adjust_creative=uK0rfzqjBmWNj6-d3ujNVA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=uK0rfzqjBmWNj6-d3ujNVA"
-  //   }
-  // ])
 }
 
 
@@ -199,42 +182,6 @@ function Yelp(yelpObj) {
   this.rating = yelpObj.rating;
   this.url = yelpObj.url;
 }
-
-// {
-//   id: '6I28wDuMBR5WLMqfKxaoeg',
-//   alias: 'pike-place-chowder-seattle',
-//   name: 'Pike Place Chowder',
-//   image_url: 'https://s3-media1.fl.yelpcdn.com/bphoto/ZyQjV-wJQ2GHyX7l3jfbyg/o.jpg',
-//   is_closed: false,
-//   url: 'https://www.yelp.com/biz/pike-place-chowder-seattle?adjust_creative=5fnHnfOzM-sMwBOk--Xvfg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=5fnHnfOzM-sMwBOk--Xvfg',
-//   review_count: 7356,
-//   categories: [ [Object], [Object] ],
-//   rating: 4.5,
-//   coordinates: { latitude: 47.60939, longitude: -122.34112 },
-//   transactions: [ 'pickup', 'delivery' ],
-//   price: '$$',
-//   location: {
-//     address1: '1530 Post Aly',
-//     address2: 'Ste 11',
-//     address3: '',
-//     city: 'Seattle',
-//     zip_code: '98101',
-//     country: 'US',
-//     state: 'WA',
-//     display_address: [Array]
-//   },
-//   phone: '+12062672537',
-//   display_phone: '(206) 267-2537',
-//   distance: 1832.5436169291488
-// }
-
-// {
-//   "name": "Pike Place Chowder",
-//   "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/ijju-wYoRAxWjHPTCxyQGQ/o.jpg",
-//   "price": "$$   ",
-//   "rating": "4.5",
-//   "url": "https://www.yelp.com/biz/pike-place-chowder-seattle?adjust_creative=uK0rfzqjBmWNj6-d3ujNVA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=uK0rfzqjBmWNj6-d3ujNVA"
-// }
 
 
 // --- Server Start ---
