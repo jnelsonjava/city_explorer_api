@@ -65,10 +65,7 @@ function getLocation(req, res) {
           })
       }
     })
-    .catch(error => {
-      console.log(error);
-      res.status(500).send(error.message);
-    });
+    .catch(error => errorHandler(error, res));
 }
 
 function getWeather(req, res) {
@@ -81,10 +78,7 @@ function getWeather(req, res) {
       const jsonData = resFromSuperagent.body;
       res.send(jsonData.data.map(forecast => new Weather(forecast)).slice(0,8));
     })
-    .catch(error => {
-      console.log(error);
-      res.status(500).send(error.message);
-    });
+    .catch(error => errorHandler(error, res));
 }
 
 function getTrails(req, res) {
@@ -97,10 +91,7 @@ function getTrails(req, res) {
       const jsonTrailDataArray = resFromSuperagent.body.trails;
       res.send(jsonTrailDataArray.map(trailData => new Trail(trailData)));
     })
-    .catch(error => {
-      console.log(error);
-      res.status(500).send(error.message);
-    });
+    .catch(error => errorHandler(error, res));
 }
 
 function getMovies(req, res) {
@@ -112,10 +103,7 @@ function getMovies(req, res) {
     .then(movieApiResult => {
       res.send(movieApiResult.body.results.map(movie => new Movie(movie)));
     })
-    .catch(error => {
-      console.log(error);
-      res.status(500).send(error.message);
-    });
+    .catch(error => errorHandler(error, res));
 }
 
 function getYelp(req, res) {
@@ -131,10 +119,7 @@ function getYelp(req, res) {
     .then(yelpResponse => {
       res.send(yelpResponse.body.businesses.map(restaurant => new Yelp(restaurant)));
     })
-    .catch(error => {
-      console.log(error);
-      res.status(500).send(error.message);
-    });
+    .catch(error => errorHandler(error, res));
 }
 
 
@@ -181,6 +166,11 @@ function Yelp(yelpObj) {
   this.price = yelpObj.price;
   this.rating = yelpObj.rating;
   this.url = yelpObj.url;
+}
+
+const errorHandler = (error, res) => {
+  console.log(error);
+  res.status(500).send(error.message);
 }
 
 
