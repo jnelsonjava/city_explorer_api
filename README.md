@@ -21,6 +21,8 @@ A stand alone back end servicing a static front end. This server fields requests
     - Express.js
     - Dotenv
     - Cors
+    - PG
+    - Superagent
   - Tools and frameworks:
     - Node.js
     - Heroku
@@ -35,13 +37,16 @@ A stand alone back end servicing a static front end. This server fields requests
 08-19-2020 3:10pm - Created database/table to store location queries.
 08-19-2020 5:45pm - Added functionality to store previous location queries and retrieve.
 08-20-2020 3:10pm - Refactored server.js.
-08-20-2020 4:30pm - Added /movie route and API hook.
+08-20-2020 4:30pm - Added /movies route and API hook.
+08-20-2020 8:40pm - Added /yelp route and API hook.
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
   - Many thanks to Tif Taylor for helping set up APIs and the database. You can find Tif at https://www.linkedin.com/in/tiftaylor/
   - Matthew Peterson helped refactor logical structure, check out his projects at https://github.com/Mattpet26
+  - Darius Pasilaban solved issues with image paths. Connect with Darius at https://www.linkedin.com/in/pdariuslee/
+  - Amelia Waggoner fixed authorization issues with the Yelp API. Check out some of her projects at https://github.com/GoldenDog190
 
 
 ## Progress Notes
@@ -133,15 +138,15 @@ Finish time: 4:30pm
 
 Actual time needed to complete: 80m
 
-Number and name of feature: ________________________________
+Number and name of feature: #13 Add Yelp Route
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 90m
 
-Start time: _____
+Start time: 5:00pm
 
-Finish time: _____
+Finish time: 8:40pm
 
-Actual time needed to complete: _____
+Actual time needed to complete: 120m
 
 Number and name of feature: ________________________________
 
