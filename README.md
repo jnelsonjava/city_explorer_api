@@ -34,6 +34,8 @@ A stand alone back end servicing a static front end. This server fields requests
 08-18-2020 5:15pm - Hooked into hikingproject.com API for trail data by geo-coordinate search.
 08-19-2020 3:10pm - Created database/table to store location queries.
 08-19-2020 5:45pm - Added functionality to store previous location queries and retrieve.
+08-20-2020 3:10pm - Refactored server.js.
+08-20-2020 4:30pm - Added /movie route and API hook.
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -121,6 +123,16 @@ Finish time: 6:04pm
 Actual time needed to complete: 20m
 
 
+Number and name of feature: #12 Add Movie Route
+
+Estimate of time needed to complete: 90m
+
+Start time: 3:10pm
+
+Finish time: 4:30pm
+
+Actual time needed to complete: 80m
+
 Number and name of feature: ________________________________
 
 Estimate of time needed to complete: _____
@@ -131,8 +143,25 @@ Finish time: _____
 
 Actual time needed to complete: _____
 
+Number and name of feature: ________________________________
 
+Estimate of time needed to complete: _____
 
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+Number and name of feature: ________________________________
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
 
 
 

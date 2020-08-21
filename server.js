@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 3003; // default PORT 3003 if .env spec fails
 const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const TRAIL_API_KEY = process.env.TRAIL_API_KEY;
+const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
 const DATABASE_URL = process.env.DATABASE_URL;
 const app = express();
 
@@ -31,6 +32,7 @@ client.on('error', (error) => console.error(error));
 app.get('/location', getLocation);
 app.get('/weather', getWeather);
 app.get('/trails', getTrails);
+app.get('/movies', getMovies);
 
 
 // --- Route Handlers ---
@@ -99,6 +101,23 @@ function getTrails(req, res) {
     });
 }
 
+function getMovies(req, res) {
+
+  const movieApiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${MOVIE_API_KEY}&language=en-US&query=${req.query.search_query}&page=1&include_adult=false`;
+
+
+  superagent.get(movieApiUrl)
+    .then(movieApiResult => {
+      console.log(movieApiResult.body.results[0])
+      res.send(movieApiResult.body.results.map(movie => new Movie(movie)));
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).send(error.message);
+    });
+}
+
+
 
 // --- Functions ---
 
@@ -126,6 +145,33 @@ function Trail(trailObj) {
   this.condition_date = trailObj.conditionDate.split(' ')[0];
   this.condition_time = trailObj.conditionDate.split(' ')[1];
 }
+
+function Movie(movieObj) {
+  this.title = movieObj.title;
+  this.overview = movieObj.overview;
+  this.average_votes = movieObj.vote_average;
+  this.total_votes = movieObj.vote_count;
+  this.image_url = movieObj.poster_path;
+  this.popularity = movieObj.popularity;
+  this.released_on = movieObj.release_date;
+}
+
+// {
+//   popularity: 9.114,
+//   vote_count: 250,
+//   video: false,
+//   poster_path: '/AopGrtgNJFj04oCXgKMwvUfF0hg.jpg',
+//   id: 12637,
+//   adult: false,
+//   backdrop_path: '/dy9vvNddvAdsKXKnulnvhP8FxGv.jpg',
+//   original_language: 'en',
+//   original_title: 'New York, New York',
+//   genre_ids: [ 18, 10402, 10749 ],
+//   title: 'New York, New York',
+//   vote_average: 6.6,
+//   overview: 'An egotistical saxophone player and a young singer meet on V-J Day and embark upon a strained and rocky romance, even as their careers begin a long uphill climb.',
+//   release_date: '1977-06-21'
+// }
 
 
 // --- Server Start ---
