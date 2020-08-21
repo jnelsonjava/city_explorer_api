@@ -39,6 +39,7 @@ A stand alone back end servicing a static front end. This server fields requests
 08-20-2020 3:10pm - Refactored server.js.
 08-20-2020 4:30pm - Added /movies route and API hook.
 08-20-2020 8:40pm - Added /yelp route and API hook.
+08-20-2020 8:55pm - Adjusted /yelp route for pagination.
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -148,15 +149,15 @@ Finish time: 8:40pm
 
 Actual time needed to complete: 120m
 
-Number and name of feature: ________________________________
+Number and name of feature: #14 Add Pagination to Yelp Route
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 15m
 
-Start time: _____
+Start time: 8:40pm
 
-Finish time: _____
+Finish time: 8:55pm
 
-Actual time needed to complete: _____
+Actual time needed to complete: 15m
 
 Number and name of feature: ________________________________
 
