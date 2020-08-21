@@ -79,7 +79,7 @@ function getWeather(req, res) {
   superagent.get(urlToSearch)
     .then(resFromSuperagent => {
       const jsonData = resFromSuperagent.body;
-      res.send(jsonData.data.map(forecast => new Weather(forecast)));
+      res.send(jsonData.data.map(forecast => new Weather(forecast)).slice(0,8));
     })
     .catch(error => {
       console.log(error);
@@ -120,7 +120,7 @@ function getMovies(req, res) {
 
 function getYelp(req, res) {
   console.log(req.query);
-  const limit = 20;
+  const limit = 5;
   const term = 'restaurant';
   const offset = limit * req.query.page - limit;
 
