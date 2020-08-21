@@ -40,6 +40,7 @@ A stand alone back end servicing a static front end. This server fields requests
 08-20-2020 4:30pm - Added /movies route and API hook.
 08-20-2020 8:40pm - Added /yelp route and API hook.
 08-20-2020 8:55pm - Adjusted /yelp route for pagination.
+08-21-2020 10:30am - Refactored error-handling into separate function.
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
